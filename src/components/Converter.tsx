@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import { encode } from '@toon-format/toon';
+import ConversionStats from './ConversionStats';
 
 const sampleJson = {
   name: 'John Doe',
@@ -85,71 +86,88 @@ const Converter: React.FC = () => {
   };
 
   return (
-    <Paper sx={{ padding: 2, margin: 2, backgroundColor: '#F5F5DC' }}>
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={6}>
+    <Paper sx={{ padding: 4, margin: 2, backgroundColor: 'transparent', boxShadow: 'none' }}>
+      <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 4 }}>
+        <Box sx={{ flex: 1 }}>
+          <Typography variant="h6" gutterBottom sx={{ color: '#fff', fontWeight: 500 }}>
+            JSON Input
+          </Typography>
           <TextField
-            label="JSON Input"
             multiline
-            rows={15}
+            rows={20}
             variant="outlined"
             fullWidth
             value={jsonInput}
             onChange={(e) => handleJsonInputChange(e.target.value)}
-            sx={{ backgroundColor: '#FFFFFF' }}
+            sx={{
+              backgroundColor: '#1e1e1e',
+              '& .MuiOutlinedInput-root': {
+                fontFamily: 'monospace',
+                color: '#d4d4d4',
+                '& fieldset': { borderColor: '#333' },
+                '&:hover fieldset': { borderColor: '#555' },
+                '&.Mui-focused fieldset': { borderColor: '#646cff' },
+              },
+            }}
+            InputProps={{
+              spellCheck: false,
+            }}
           />
-        </Grid>
-        <Grid item xs={12} md={6}>
+          <Typography variant="caption" sx={{ color: '#666', mt: 1, display: 'block' }}>
+            Token Count: {jsonTokenCount}
+          </Typography>
+        </Box>
+        <Box sx={{ flex: 1 }}>
+          <Typography variant="h6" gutterBottom sx={{ color: '#fff', fontWeight: 500 }}>
+            TOON Output
+          </Typography>
           <TextField
-            label="TOON Output"
             multiline
-            rows={15}
+            rows={20}
             variant="outlined"
             fullWidth
             value={toonOutput}
             InputProps={{
               readOnly: true,
+              spellCheck: false,
             }}
-            sx={{ backgroundColor: '#EFEFEF' }}
+            sx={{
+              backgroundColor: '#1e1e1e',
+              '& .MuiOutlinedInput-root': {
+                fontFamily: 'monospace',
+                color: '#d4d4d4',
+                '& fieldset': { borderColor: '#333' },
+                '&:hover fieldset': { borderColor: '#555' },
+                '&.Mui-focused fieldset': { borderColor: '#646cff' },
+              },
+            }}
           />
-        </Grid>
-        <Grid item xs={12}>
-          <Grid container spacing={1}>
-            <Grid item>
-              <Button onClick={handleConvert} variant="contained" sx={{ backgroundColor: '#808000', '&:hover': { backgroundColor: '#6B8E23' } }}>
-                Convert
-              </Button>
-            </Grid>
-            <Grid item>
-              <Button onClick={handleCopy} variant="contained" sx={{ backgroundColor: '#808000', '&:hover': { backgroundColor: '#6B8E23' } }}>
-                Copy
-              </Button>
-            </Grid>
-            <Grid item>
-              <Button onClick={handleSample} variant="contained" sx={{ backgroundColor: '#808000', '&:hover': { backgroundColor: '#6B8E23' } }}>
-                Sample
-              </Button>
-            </Grid>
-            <Grid item>
-              <Button onClick={handleClear} variant="contained" sx={{ backgroundColor: '#808000', '&:hover': { backgroundColor: '#6B8E23' } }}>
-                Clear
-              </Button>
-            </Grid>
-            <Grid item>
-              <Button onClick={handleBeautify} variant="contained" sx={{ backgroundColor: '#808000', '&:hover': { backgroundColor: '#6B8E23' } }}>
-                Beautify
-              </Button>
-            </Grid>
-          </Grid>
-        </Grid>
-        <Grid item xs={12}>
-          {error && <Typography color="error">{error}</Typography>}
-        </Grid>
-        <Grid item xs={12}>
-          <Typography>JSON Token Count: {jsonTokenCount}</Typography>
-          <Typography>TOON Token Count: {toonTokenCount}</Typography>
-        </Grid>
-      </Grid>
+          <Typography variant="caption" sx={{ color: '#666', mt: 1, display: 'block' }}>
+            Token Count: {toonTokenCount}
+          </Typography>
+        </Box>
+      </Box>
+      <Box sx={{ mt: 4, display: 'flex', justifyContent: 'center', gap: 2, flexWrap: 'wrap' }}>
+        <Button onClick={handleConvert} variant="contained" size="large" sx={{ backgroundColor: '#646cff', '&:hover': { backgroundColor: '#535bf2' }, minWidth: 120 }}>
+          Convert
+        </Button>
+        <Button onClick={handleCopy} variant="outlined" size="large" sx={{ color: '#fff', borderColor: '#666', '&:hover': { borderColor: '#fff', backgroundColor: 'rgba(255,255,255,0.05)' } }}>
+          Copy
+        </Button>
+        <Button onClick={handleSample} variant="text" sx={{ color: '#aaa', '&:hover': { color: '#fff' } }}>
+          Sample
+        </Button>
+        <Button onClick={handleClear} variant="text" sx={{ color: '#aaa', '&:hover': { color: '#fff' } }}>
+          Clear
+        </Button>
+        <Button onClick={handleBeautify} variant="text" sx={{ color: '#aaa', '&:hover': { color: '#fff' } }}>
+          Beautify
+        </Button>
+      </Box>
+      <Box sx={{ mt: 2 }}>
+        {error && <Typography color="error" align="center">{error}</Typography>}
+      </Box>
+      <ConversionStats jsonTokenCount={jsonTokenCount} toonTokenCount={toonTokenCount} />
     </Paper>
   );
 };

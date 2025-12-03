@@ -7,12 +7,13 @@ const Footer: React.FC = () => {
     <Box
       component="footer"
       sx={{
-        backgroundColor: '#556B2F',
-        color: '#D3D3D3',
+        backgroundColor: 'transparent',
+        color: 'rgba(255, 255, 255, 0.5)',
         padding: '1rem',
         textAlign: 'center',
         width: '100%',
         marginTop: 'auto',
+        borderTop: '1px solid rgba(255, 255, 255, 0.12)'
       }}
     >
       <Typography variant="body2">
