@@ -1,73 +1,67 @@
-# React + TypeScript + Vite
+# JSON to TOON Converter
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A powerful, privacy-focused tool to convert JSON data into the TOON format, optimized for Large Language Models (LLMs). Reduce token usage by 30-60% while maintaining data readability.
 
-Currently, two official plugins are available:
+![JSON to TOON Converter](https://via.placeholder.com/800x400?text=JSON+to+TOON+Converter)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## React Compiler
+-   **Token Reduction**: Significantly reduce token count for LLM prompts.
+-   **Privacy First**: All conversions happen locally in your browser. No data is sent to any server.
+-   **Dark/Light Mode**: Toggle between themes for comfortable viewing.
+-   **Conversion Statistics**: Real-time insights into token savings.
+-   **Developer Friendly**: Built with modern web technologies.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the ESLint configuration
+-   **Frontend**: React, TypeScript, Vite
+-   **UI Library**: Material UI (MUI)
+-   **Styling**: CSS Modules, Emotion
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Getting Started
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Prerequisites
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+-   Node.js (v20 or higher recommended)
+-   npm (v10 or higher)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Installation
+
+1.  Clone the repository:
+    ```bash
+    git clone https://github.com/anuraj07/JsonToonConverter.git
+    ```
+2.  Navigate to the project directory:
+    ```bash
+    cd JsonToonConverter
+    ```
+3.  Install dependencies:
+    ```bash
+    npm install
+    ```
+
+### Running the Application
+
+Start the development server:
+
+```bash
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Open your browser and navigate to `http://localhost:5173`.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Usage
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1.  Paste your JSON data into the "JSON Input" area.
+2.  Click **Convert**.
+3.  View the converted TOON data in the "TOON Output" area.
+4.  Check the "Conversion Statistics" to see your savings.
+5.  Use **Copy** to copy the result to your clipboard.
+
+## License
+
+This project is licensed under the MIT License.
+
+## Acknowledgments
+
+-   Created with ❤️ by Jules.
